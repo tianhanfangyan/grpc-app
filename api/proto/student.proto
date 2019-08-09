@@ -1,0 +1,104 @@
+syntax ="proto3";
+
+package api;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+
+message Student {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+    string sex = 4;
+}
+
+message Reply {
+    int32 status = 1;
+    string msg = 2;
+}
+
+message AddStudentArgs {
+    Student stu = 1;
+}
+
+message AddStudentReply {
+    string uid = 1;
+}
+
+message GetStudentArgs {
+    string uid = 1;
+}
+
+message GetStudentReply {
+    Student stu = 1;
+}
+
+message GetAllStudentArgs {
+
+}
+
+message GetAllStudentReply {
+    // 声明一个Student的数组
+    repeated Student stus = 1;
+}
+
+message UpdateStudentArgs {
+    string uid = 1;
+    Student stu = 2;
+}
+
+message UpdateStudentReply {
+    Student stu = 1;
+}
+
+message DeleteStudentArgs {
+    string uid = 1;
+}
+
+message DeleteStudentReply {
+    Reply reply = 1;
+}
+
+
+service StudentService {
+
+    // 添加学生信息
+    rpc AddStudent(AddStudentArgs) returns (AddStudentReply) {
+        option (google.api.http) = {
+            post: "/v1/student"
+            body: "*"
+        };
+    }
+
+    // 得到学生信息
+    rpc GetStudent(GetStudentArgs) returns (GetStudentReply) {
+        option (google.api.http) = {
+            get: "/v1/student/{uid}"
+        };
+    }
+
+    // 得到所有学生信息
+    rpc GetAllStudent(GetAllStudentArgs) returns (GetAllStudentReply) {
+        option (google.api.http) = {
+            get: "/v1/student"
+        };
+    }
+
+    // 更新学生信息
+    rpc UpdateStudent(UpdateStudentArgs) returns (UpdateStudentReply) {
+        option (google.api.http) = {
+            put: "/v1/student/{uid}"
+            body: "*"
+        };
+    }
+
+    // 删除学生信息
+    rpc DeleteStudent(DeleteStudentArgs) returns (DeleteStudentReply) {
+        option (google.api.http) = {
+            delete: "/v1/student/{uid}"
+        };
+    }
+
+}
+
