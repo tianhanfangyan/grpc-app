@@ -1,0 +1,236 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "student.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/student": {
+      "get": {
+        "summary": "得到所有学生信息",
+        "operationId": "GetAllStudent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAllStudentReply"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      },
+      "post": {
+        "summary": "添加学生信息",
+        "operationId": "AddStudent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiAddStudentReply"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiAddStudentArgs"
+            }
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/v1/student/{uid}": {
+      "get": {
+        "summary": "得到学生信息",
+        "operationId": "GetStudent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetStudentReply"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      },
+      "delete": {
+        "summary": "删除学生信息",
+        "operationId": "DeleteStudent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiDeleteStudentReply"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      },
+      "put": {
+        "summary": "更新学生信息",
+        "operationId": "UpdateStudent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateStudentReply"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateStudentArgs"
+            }
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAddStudentArgs": {
+      "type": "object",
+      "properties": {
+        "stu": {
+          "$ref": "#/definitions/apiStudent"
+        }
+      }
+    },
+    "apiAddStudentReply": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDeleteStudentReply": {
+      "type": "object",
+      "properties": {
+        "reply": {
+          "$ref": "#/definitions/apiReply"
+        }
+      }
+    },
+    "apiGetAllStudentReply": {
+      "type": "object",
+      "properties": {
+        "stus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiStudent"
+          },
+          "title": "声明一个Student的数组"
+        }
+      }
+    },
+    "apiGetStudentReply": {
+      "type": "object",
+      "properties": {
+        "stu": {
+          "$ref": "#/definitions/apiStudent"
+        }
+      }
+    },
+    "apiReply": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "apiStudent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sex": {
+          "type": "string"
+        }
+      }
+    },
+    "apiUpdateStudentArgs": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "stu": {
+          "$ref": "#/definitions/apiStudent"
+        }
+      }
+    },
+    "apiUpdateStudentReply": {
+      "type": "object",
+      "properties": {
+        "stu": {
+          "$ref": "#/definitions/apiStudent"
+        }
+      }
+    }
+  }
+}
