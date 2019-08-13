@@ -67,7 +67,7 @@ service StudentService {
     rpc AddStudent(AddStudentArgs) returns (AddStudentReply) {
         option (google.api.http) = {
             post: "/v1/student"
-            body: "*"
+            body: "stu"
         };
     }
 
@@ -89,7 +89,7 @@ service StudentService {
     rpc UpdateStudent(UpdateStudentArgs) returns (UpdateStudentReply) {
         option (google.api.http) = {
             put: "/v1/student/{uid}"
-            body: "*"
+            body: "stu"
         };
     }
 

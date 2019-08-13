@@ -48,7 +48,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiAddStudentArgs"
+              "$ref": "#/definitions/apiStudent"
             }
           }
         ],
@@ -127,7 +127,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateStudentArgs"
+              "$ref": "#/definitions/apiStudent"
             }
           }
         ],
@@ -138,14 +138,6 @@
     }
   },
   "definitions": {
-    "apiAddStudentArgs": {
-      "type": "object",
-      "properties": {
-        "stu": {
-          "$ref": "#/definitions/apiStudent"
-        }
-      }
-    },
     "apiAddStudentReply": {
       "type": "object",
       "properties": {
@@ -210,17 +202,6 @@
         },
         "sex": {
           "type": "string"
-        }
-      }
-    },
-    "apiUpdateStudentArgs": {
-      "type": "object",
-      "properties": {
-        "uid": {
-          "type": "string"
-        },
-        "stu": {
-          "$ref": "#/definitions/apiStudent"
         }
       }
     },
